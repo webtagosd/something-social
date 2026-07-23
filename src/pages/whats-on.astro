@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+
+const week = [
+  { day: 'Monday', deal: '$20 Pastas', note: 'Buy any drink and we sling you any pasta on the menu for $20.', img: 'food-plated.jpg' },
+  { day: 'Tuesday', deal: '$25 Steak Night', note: '200g steak with salad and fries. Done properly, priced kindly.', img: 'food-parmigiana.jpg' },
+  { day: 'Wednesday', deal: '2 Margheritas for $40', note: 'Two Napoli-style Margheritas, dine-in only. Bring your favourite person.', img: 'pizza-overhead.jpg' },
+  { day: 'Thursday', deal: '$15 Cocktails', note: 'The whole social cocktail list. Passionfruit mojito to basil smash.', img: 'cheers-cocktails.jpg' },
+  { day: 'Friday', deal: '$15 Spritz', note: 'Limoncello, vodka, rum, tequila or gin spritz. The weekend starts here.', img: 'spritz-tray.jpg' },
+  { day: 'Sunday', deal: 'Kids Eat Free', note: 'Under 12s eat free from the Little Socialites menu. T&Cs apply.', img: 'kids-play.jpg' },
+];
+---
+
+<Base
+  title="What's On | Something & Social Broadway, Newmarket"
+  description="Weekly deals on the Newmarket rooftop. $20 pastas Monday, $25 steak Tuesday, 2-for-$40 pizzas Wednesday, $15 cocktails Thursday, $15 spritz Friday and Social Hour every weekday."
+  dark
+>
+  <main class="bg-ink text-white-warm">
+    <!-- HERO -->
+    <section class="relative flex min-h-[70svh] items-end overflow-hidden">
+      <img
+        src="/images/cheers-sun.jpg"
+        alt="Glasses raised in the afternoon sun on the rooftop"
+        class="absolute inset-0 h-full w-full object-cover"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-ink/40"></div>
+      <div class="relative mx-auto w-full max-w-[1600px] px-5 pb-16 md:px-10 md:pb-20">
+        <p class="kicker text-white-warm/80" data-load-fade>Social rituals · Broadway</p>
+        <h1 class="display mt-5 text-6xl text-white-warm md:text-8xl">
+          <span data-load-word>What's</span>
+          <span data-load-word>on.</span>
+        </h1>
+        <p class="mt-8 max-w-md leading-relaxed text-white-warm/85" data-load-fade>
+          A reason to come up every day of the week. Some of them cost $15.
+        </p>
+      </div>
+    </section>
+
+    <!-- SOCIAL HOUR BANNER -->
+    <section class="relative z-10 bg-pink">
+      <div class="mx-auto flex max-w-[1600px] flex-col items-start justify-between gap-6 px-5 py-12 md:flex-row md:items-center md:px-10">
+        <div>
+          <p class="kicker text-white-warm">Monday to Friday · 3 till 5pm</p>
+          <p class="display mt-3 text-4xl text-white-warm md:text-5xl">Social Hour.</p>
+        </div>
+        <p class="max-w-sm leading-relaxed text-white-warm/90">
+          $10 tap beers, house wines, raspberry mimosas and prosecco. The best two hours of the working day.
+        </p>
+      </div>
+    </section>
+
+    <!-- WEEK GRID -->
+    <section class="relative z-10 bg-ink">
+      <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-32">
+        <div class="reveal max-w-2xl">
+          <p class="kicker text-pink-bright">The weekly line-up</p>
+          <h2 class="display mt-6 text-5xl md:text-6xl">Every day earns its ritual.</h2>
+        </div>
+        <div class="mt-16 grid gap-x-6 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+          {
+            week.map((w) => (
+              <article class="reveal group">
+                <figure class="reveal-img overflow-hidden">
+                  <img src={`/images/${w.img}`} alt={`${w.day}: ${w.deal}`} class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                </figure>
+                <p class="kicker mt-6 text-pink-bright">{w.day}</p>
+                <h3 class="display mt-2 text-3xl">{w.deal}</h3>
+                <p class="mt-3 leading-relaxed text-white-warm/65">{w.note}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- EXTRAS -->
+    <section class="relative z-10 bg-paper text-ink">
+      <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-32">
+        <div class="grid gap-16 lg:grid-cols-2">
+          <figure class="reveal-img reveal order-2 lg:order-1">
+            <img src="/images/friends-cheers.jpg" alt="Friends raising spritzes under a blue umbrella" class="h-full w-full object-cover" loading="lazy" />
+          </figure>
+          <div class="order-1 flex flex-col justify-center lg:order-2">
+            <p class="kicker reveal text-pink">And then some</p>
+            <h2 class="display reveal mt-6 text-5xl md:text-6xl">The extras.</h2>
+            <div class="reveal-stagger mt-10 divide-y divide-line">
+              <div class="py-6">
+                <h3 class="display text-2xl">Brunch, every day till 3pm</h3>
+                <p class="mt-2 leading-relaxed text-ink/70">Shakshuka, breakfast pizza, steak and eggs. Weekends start at 10am.</p>
+              </div>
+              <div class="py-6">
+                <h3 class="display text-2xl">Free birthday dessert</h3>
+                <p class="mt-2 leading-relaxed text-ink/70">
+                  Spend $100 or more with the crew and the birthday star picks a dessert on us. Tiramisu or chocolate
+                  fondant, choose wisely.
+                </p>
+              </div>
+              <div class="py-6">
+                <h3 class="display text-2xl">Cocktail trees, $70</h3>
+                <p class="mt-2 leading-relaxed text-ink/70">Aperol spritz, margarita or martini. Six glasses, one tree, zero regrets.</p>
+              </div>
+              <div class="py-6">
+                <h3 class="display text-2xl">Gift vouchers</h3>
+                <p class="mt-2 leading-relaxed text-ink/70">
+                  Choosing gifts is hard. A voucher for a good time is not.
+                  <a
+                    href="https://giftcards.nowbookit.com/cards/card-selection?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&accent=232,25,93"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-pink underline underline-offset-4 transition hover:text-ink"
+                  >Get one here</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

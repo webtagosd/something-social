@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+
+const BOOK_URL =
+  'https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat';
+---
+
+<Base
+  title="Contact & Find Us | Something & Social Broadway, Newmarket"
+  description="Find Something & Social on the rooftop, Level 3 of Westfield Newmarket, 309 Broadway. Open 7 days. Call 09 218 5085 for groups of 8 or more."
+>
+  <main>
+    <!-- HERO -->
+    <section class="relative flex min-h-[60svh] items-end overflow-hidden">
+      <img
+        src="/images/rooftop-garden.jpg"
+        alt="The rooftop garden walkway at Westfield Newmarket"
+        class="absolute inset-0 h-full w-full object-cover"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-ink/40"></div>
+      <div class="relative mx-auto w-full max-w-[1600px] px-5 pb-16 md:px-10 md:pb-20">
+        <p class="kicker text-white-warm/80" data-load-fade>Bookings · Events · Collabs · Hellos</p>
+        <h1 class="display mt-5 text-6xl text-white-warm md:text-8xl">
+          <span data-load-word>Let's</span>
+          <span data-load-word>get</span>
+          <span data-load-word>social.</span>
+        </h1>
+      </div>
+    </section>
+
+    <!-- DETAILS -->
+    <section class="relative z-10 bg-paper">
+      <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-32">
+        <div class="grid gap-16 lg:grid-cols-12">
+          <div class="lg:col-span-5">
+            <div class="reveal">
+              <p class="kicker text-pink">Find us</p>
+              <h2 class="display mt-6 text-4xl md:text-5xl">One level up,<br />impossible to miss.</h2>
+              <address class="mt-8 space-y-1 not-italic leading-relaxed text-ink/75">
+                <p>Rooftop, Level 3, Westfield Newmarket</p>
+                <p>309 Broadway, Newmarket, Auckland</p>
+              </address>
+              <p class="mt-4 leading-relaxed text-ink/75">
+                Take the lifts to Level 3 and follow the sun.
+              </p>
+            </div>
+
+            <dl class="reveal-stagger mt-12 divide-y divide-line border-t border-line">
+              <div class="grid grid-cols-2 gap-4 py-5">
+                <dt class="kicker pt-1 text-ink/45">Hours</dt>
+                <dd class="leading-relaxed text-ink/80">
+                  Mon – Fri · 11am – late<br />Sat – Sun · 10am – late
+                </dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-5">
+                <dt class="kicker pt-1 text-ink/45">Phone</dt>
+                <dd><a href="tel:+6492185085" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">09 218 5085</a></dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-5">
+                <dt class="kicker pt-1 text-ink/45">Email</dt>
+                <dd><a href="mailto:rm@sasnewmarket.co.nz" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">rm@sasnewmarket.co.nz</a></dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-5">
+                <dt class="kicker pt-1 text-ink/45">Groups of 8+</dt>
+                <dd class="leading-relaxed text-ink/80">Call us directly and we'll set the table.</dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-5">
+                <dt class="kicker pt-1 text-ink/45">Follow</dt>
+                <dd class="flex flex-wrap gap-x-5 gap-y-1">
+                  <a href="https://www.instagram.com/somethingandsocial" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">Instagram</a>
+                  <a href="https://www.facebook.com/somethingandsocial" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">Facebook</a>
+                  <a href="https://www.tiktok.com/@somethingandsocial" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">TikTok</a>
+                </dd>
+              </div>
+            </dl>
+
+            <div class="reveal mt-12 flex flex-wrap gap-4">
+              <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink">Book a table</a>
+              <a href="/functions#enquire" class="btn btn-ink">Function enquiry</a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <figure class="reveal-img reveal h-full min-h-[420px]">
+              <iframe
+                title="Map to Something & Social Broadway, 309 Broadway, Newmarket"
+                src="https://www.google.com/maps?q=Something+%26+Social+Broadway,+309+Broadway,+Newmarket,+Auckland&output=embed"
+                class="h-full w-full border-0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREERS STRIP -->
+    <section class="relative z-10 bg-cream">
+      <div class="mx-auto flex max-w-[1600px] flex-col items-start justify-between gap-6 px-5 py-16 md:flex-row md:items-center md:px-10">
+        <div>
+          <p class="kicker text-pink">Careers</p>
+          <p class="display mt-3 text-3xl md:text-4xl">Join the crew.</p>
+        </div>
+        <a href="mailto:rm@sasnewmarket.co.nz?subject=Careers%20at%20Something%20%26%20Social%20Broadway" class="btn btn-ink">
+          Get in touch
+        </a>
+      </div>
+    </section>
+  </main>
+</Base>

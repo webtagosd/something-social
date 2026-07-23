@@ -1,0 +1,312 @@
+---
+import Base from '../layouts/Base.astro';
+
+type Item = { name: string; desc?: string; price: string };
+type Section = { kicker: string; title: string; note?: string; items: Item[] };
+
+const food: Section[] = [
+  {
+    kicker: 'To start',
+    title: 'Sharing',
+    items: [
+      { name: 'Roast Garlic Pizza Bread', desc: 'Labneh, spiced hazelnuts, thyme honey', price: '18' },
+      { name: 'Cheese & Caramelised Onion Pizza Bread', desc: 'Rocket', price: '15' },
+      { name: 'Arancini', desc: 'Porcini, black truffle mayo, romesco', price: '24' },
+      { name: 'Garlic & Chorizo Prawns', desc: 'Chilli, coriander, pizza bread', price: '24' },
+      { name: 'Classic Meatballs', desc: 'Arrabbiata sauce, parmesan, garlic bread', price: '25' },
+      { name: 'Insalata Caprese', desc: 'Trio of tomato, bocconcini, basil, olive oil, aged balsamic', price: '23' },
+      { name: 'Fried Calamari', desc: 'Sundried tomato aioli, parsley', price: '25' },
+      { name: 'Social Fried Chicken', desc: 'Pickles, ranch mayo, chives', price: '24' },
+      { name: 'Beef Carpaccio', desc: 'Dijon mustard, capers, pickled onion, wakame, anchovy mayo, chilli oil', price: '24' },
+      {
+        name: 'The Social Platter',
+        desc: 'Meatballs, calamari, arancini, fried chicken, prawn & chorizo, polenta chips, both pizza breads',
+        price: '85',
+      },
+    ],
+  },
+  {
+    kicker: 'From the oven',
+    title: 'Pizza',
+    note: 'All pizzas can be done gluten-free, and cheese swapped for a dairy-free option (+$2.5).',
+    items: [
+      { name: 'Margherita', desc: 'Basil, marinara sauce', price: '26' },
+      { name: 'Pepperoni', desc: 'Salami milano, mozzarella, parmesan, marinara', price: '31.5' },
+      { name: 'Pulled Lamb', desc: 'Olives, red onion, feta, baby spinach, sundried tomato, tzatziki', price: '31' },
+      { name: 'Spicy Chicken', desc: 'Fried potato, roasted capsicum, baby spinach, mozzarella, marinara', price: '31' },
+      { name: 'Prawn & Chorizo', desc: 'Shallot rings, roasted capsicum, marinara', price: '31' },
+      { name: 'Hawaiian', desc: 'Charred pineapple, mozzarella', price: '28' },
+      { name: 'Field Mushroom', desc: 'Confit onion, Gorgonzola, mozzarella, herb butter', price: '28' },
+    ],
+  },
+  {
+    kicker: 'Fresh',
+    title: 'Pasta',
+    note: 'Gluten-free option for $2.5. Buy any drink and we sling you a pasta for $20 on Mondays.',
+    items: [
+      { name: 'Chicken & Bacon Fettuccine', desc: 'Mushroom, confit onion, cream sauce', price: '30' },
+      { name: 'Chilli Prawn Spaghetti', desc: 'Garlic, roasted cherry tomato, basil, pomodoro sauce', price: '32' },
+      { name: 'Harissa Bolognese Rigatoni', desc: 'Parmesan, basil', price: '30' },
+      { name: 'Pea, Spinach & Goat Cheese Penne', desc: 'Add smoked salmon $7.5', price: '29' },
+      { name: 'Broccoli & Anchovy Orecchiette', desc: 'Garlic, parmesan. Add chicken $7', price: '28' },
+      { name: 'Butternut Squash & Sage Risotto', desc: 'Crème fraîche. Add chicken $7', price: '30' },
+    ],
+  },
+  {
+    kicker: 'The classics',
+    title: 'Social Staples',
+    note: '$25 200g steak, salad and fries on Tuesdays.',
+    items: [
+      { name: 'Italian Chicken Salad', desc: 'Bocconcini, rocket, cherry tomatoes, kalamata olives, toasted almonds', price: '29.9' },
+      { name: 'Spiced Beef Salad', desc: 'Greens, carrots, hummus, dukkah, pomegranate', price: '29.9' },
+      { name: 'Roasted Pumpkin Salad', desc: 'Roast chickpeas, shallots, feta, baby spinach, balsamic vinaigrette', price: '26' },
+      { name: 'Chicken Parmigiana', desc: 'Coleslaw salad, fries', price: '32' },
+      { name: '350g Ribeye', desc: 'Fries, truffle mushroom sauce or Café de Paris butter', price: '46' },
+      { name: 'Deli Sandwich', desc: 'Smoked ham, spianatta, mortadella picante, salami, tomatoes, lettuce, hummus', price: '24' },
+      { name: 'Buttermilk Fried Chicken Burger', desc: 'Slaw, smoked bacon, pickles, ranch mayo, fries', price: '29.9' },
+      { name: 'Mushroom Burger', desc: 'Truffle aioli, pickles, rocket, cheddar, caramelised onion, fries', price: '29.9' },
+      { name: 'Social Cheese Burger', desc: 'Crispy bacon, smoked Gouda, mustard aioli, pickles, fries', price: '29.9' },
+      { name: 'Grilled Lamb Chops', desc: 'Roasted baby carrots, crispy potatoes, romesco, chimichurri', price: '42' },
+      { name: 'Italian Chicken Sandwich', desc: 'Crumbed chicken, Napolitana sauce, smoked ham, mozzarella, ciabatta, fries', price: '29.9' },
+      { name: 'Atlantic Salmon', desc: 'Baby potato, green pea sauce, sundried tomato tapenade, chilli oil', price: '42' },
+      { name: 'Beer Battered Fish & Chips', desc: 'Lemon wedge, anchovy tartar sauce', price: '28' },
+    ],
+  },
+  {
+    kicker: 'On the side',
+    title: 'Sides',
+    items: [
+      { name: 'Fries', desc: 'Ketchup or house aioli', price: '12.5' },
+      { name: 'Truffle Fries', desc: 'Truffle oil, parmesan, truffle aioli', price: '15' },
+      { name: 'Sweetcorn & Baby Gem Salad', desc: 'Shallot rings, sesame dressing, rocket', price: '15' },
+      { name: 'Sauteed Broccoli', desc: 'Goat cheese, almonds, green oil', price: '15' },
+      { name: 'Roasted Baby Potatoes', desc: 'Confit garlic oil, herb butter', price: '15' },
+      { name: 'Polenta Chips', desc: 'Truffle mayo', price: '14' },
+      { name: 'Onion Rings', desc: 'House aioli', price: '12' },
+    ],
+  },
+  {
+    kicker: 'Till 3pm, every day',
+    title: 'Something Brunchie',
+    items: [
+      { name: 'Harissa Bolognese on Toast', desc: 'Soft poached eggs, parmesan', price: '26' },
+      { name: 'Breakfast Pizza', desc: 'Smoked bacon, sausage, caramelised onion, mushroom, labneh, crispy potato, egg', price: '28' },
+      { name: 'Shakshuka', desc: 'Poached eggs, roast capsicum, confit onion tomatoes, spiced coriander, cumin', price: '26' },
+      { name: 'Truffle Onion & Mushrooms on Brioche', desc: 'Gorgonzola crème fraîche, chives', price: '26' },
+      { name: 'Steak & Eggs', desc: 'Chimichurri sauce, fried potatoes', price: '32' },
+    ],
+  },
+  {
+    kicker: 'Sweet',
+    title: 'Happy Endings',
+    items: [
+      { name: 'Tiramisu', desc: 'Espresso-soaked layers, mascarpone, Kahlua', price: '16' },
+      { name: 'Chocolate Fondant', desc: 'Honeycomb, vanilla bean ice cream', price: '16' },
+      { name: 'Lemon Ricotta Cake', desc: 'Macerated strawberries, Limoncello shot', price: '16' },
+      { name: 'Italian Crème Caramel', desc: 'Freeze dried raspberry, hokeypokey', price: '16' },
+      { name: 'Affogato', desc: 'Vanilla ice cream, Underground Coffee. Add Baileys, Kahlua or Amaretto $9', price: '17' },
+    ],
+  },
+  {
+    kicker: 'Under 12s · free on Sundays',
+    title: 'Little Socialites',
+    items: [
+      { name: 'Spaghetti', desc: 'Tomato sauce, cheese', price: '15' },
+      { name: 'Chicken & Bacon Penne', price: '15' },
+      { name: 'Ham, Cheese & Tomato Pizza', price: '15' },
+      { name: 'Fish Fingers', desc: 'Chips, ketchup', price: '15' },
+      { name: 'Chicken', desc: 'Chips or vegetables', price: '15' },
+      { name: 'Happy Meal', desc: 'A choice of dish, kids drink and ice cream', price: '20' },
+    ],
+  },
+];
+
+const drinks: Section[] = [
+  {
+    kicker: '$15 on Thursdays',
+    title: 'Social Cocktails',
+    items: [
+      { name: 'Passionfruit Mojito', desc: 'Havana white rum, triple sec, passionfruit, lime, soda', price: '21' },
+      { name: 'Watermelon Highball', desc: 'Absolut Watermelon, Malibu, watermelon syrup, lemon', price: '21' },
+      { name: 'Pretty Peach', desc: "Seager's gin, peach schnapps, pineapple, elderflower", price: '21' },
+      { name: 'Lychee Bellini', desc: 'Vodka, sparkling rosé, lychee, elderflower', price: '21' },
+      { name: 'Stormy Colada', desc: 'Bumbu rum, coconut, pineapple, ginger beer', price: '21' },
+      { name: 'Basil Smash', desc: 'Gin, basil, lemonade, soda', price: '21' },
+    ],
+  },
+  {
+    kicker: '$15 on Fridays',
+    title: 'Social Spritz',
+    items: [
+      { name: 'Limoncello Spritz', desc: 'Limoncello, prosecco, lime, soda', price: '18' },
+      { name: 'Vodka Spritz', desc: 'Peach vodka, prosecco, peach syrup, soda', price: '18' },
+      { name: 'Rum Spritz', desc: 'Malibu rum, prosecco, pineapple, coconut milk, soda', price: '18' },
+      { name: 'Tequila Spritz', desc: 'Altos tequila, prosecco, grapefruit, lime, soda', price: '18' },
+      { name: 'Gin Spritz', desc: 'Beefeater Pink gin, prosecco, grenadine, lime, soda', price: '18' },
+    ],
+  },
+  {
+    kicker: 'Always',
+    title: 'The Classics',
+    items: [
+      { name: 'Mimosa, Aperol Spritz', price: '18' },
+      { name: 'Bloody Mary, Espresso Martini, French Martini, Negroni, Classic Margarita', price: '21' },
+      { name: 'Sangria (red or white), Pimms 1L', price: '34' },
+      { name: 'Cocktail Trees', desc: 'Aperol spritz tree, margarita tree, martini tree', price: '70' },
+    ],
+  },
+  {
+    kicker: 'Zero proof',
+    title: 'Mocktails',
+    items: [
+      { name: 'Social Ice Tea', desc: 'Black tea, lime juice, lemon', price: '13' },
+      { name: 'Mango Royale', desc: 'Mango puree, apple juice, soda', price: '13' },
+      { name: 'Passion Ginger Cooler', desc: 'Passionfruit puree, ginger beer, soda', price: '13' },
+      { name: 'Raspberry Mojito', desc: 'Raspberry cordial, mint, lime, soda', price: '13' },
+    ],
+  },
+  {
+    kicker: '$10 in Social Hour',
+    title: 'Tap & Bottles',
+    items: [
+      { name: 'Tap', desc: 'Asahi, Peroni, Pure Blonde, Hard Rated, Brookvale Gingerbeer, Sawmill range', price: 'from 14' },
+      { name: 'Bottles', desc: 'Corona, Heineken, Heineken Silver, Steinlager Classic', price: '11' },
+      { name: 'Somersby Ciders', desc: 'Apple, pear, blackberry', price: '10.5' },
+      { name: 'Low & zero', desc: 'Asahi 0%, Peroni 0%, State of Play IPA 0%, Sawmill Bare Beer, Corona Cero', price: '10' },
+    ],
+  },
+  {
+    kicker: 'By glass & bottle',
+    title: 'Wines',
+    items: [
+      { name: 'Champagne & Sparkling', desc: 'Graham Norton Prosecco, Squealing Pig Rosé, Oyster Bay Cuvee, Mumm Grand Cordon', price: 'from 12.5' },
+      { name: 'Whites', desc: 'Sauvignon blanc, chardonnay and pinot gris from Marlborough and Central Otago', price: 'from 11.5' },
+      { name: 'Rosé', desc: 'Squealing Pig, La Petite Laurette du Midi, The Ned, Saddleback', price: 'from 14' },
+      { name: 'Aromatics', desc: 'Riesling from Central Otago and Italy, Chenin Blanc from Hawke’s Bay', price: 'from 14.5' },
+      { name: 'Reds', desc: 'Pinot noir, shiraz, cabernet, merlot, primitivo and Rioja', price: 'from 11.5' },
+    ],
+  },
+];
+---
+
+<Base
+  title="Menus | Something & Social Broadway, Newmarket"
+  description="Wood-fired pizza, fresh pasta, sharing plates, social cocktails and spritz on the rooftop of Westfield Newmarket. Brunch till 3pm every day."
+>
+  <main>
+    <!-- HERO -->
+    <section class="relative flex min-h-[70svh] items-end overflow-hidden">
+      <img
+        src="/images/pizza-hands.jpg"
+        alt="Pizzas passed across the table"
+        class="absolute inset-0 h-full w-full object-cover"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-ink/40"></div>
+      <div class="relative mx-auto w-full max-w-[1600px] px-5 pb-16 md:px-10 md:pb-20">
+        <p class="kicker text-white-warm/80" data-load-fade>Ready to feast</p>
+        <h1 class="display mt-5 text-6xl text-white-warm md:text-8xl">
+          <span data-load-word>Social</span>
+          <span data-load-word>eats.</span>
+        </h1>
+        <div class="mt-8 flex flex-wrap gap-4" data-load-fade>
+          <a href="#food" class="btn btn-pink">Food menu</a>
+          <a href="#drinks" class="btn btn-outline-light">Drinks menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOD -->
+    <section id="food" class="relative z-10 bg-paper scroll-mt-20">
+      <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-32">
+        <div class="reveal max-w-2xl">
+          <p class="kicker text-pink">Food</p>
+          <h2 class="display mt-6 text-5xl md:text-6xl">From the open kitchen.</h2>
+          <p class="mt-6 leading-relaxed text-ink/70">
+            Italian at heart, made for sharing. Gluten-free options across the menu, just tell your server about any
+            allergies before ordering.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-x-16 gap-y-20 lg:grid-cols-2">
+          {
+            food.map((s) => (
+              <div class="reveal">
+                <p class="kicker text-pink">{s.kicker}</p>
+                <h3 class="display mt-3 text-3xl md:text-4xl">{s.title}</h3>
+                {s.note && <p class="display-italic mt-3 text-ink/60">{s.note}</p>}
+                <ul class="mt-8 divide-y divide-line">
+                  {s.items.map((i) => (
+                    <li class="flex items-baseline justify-between gap-6 py-3.5">
+                      <div>
+                        <p class="font-medium">{i.name}</p>
+                        {i.desc && <p class="mt-0.5 text-sm leading-relaxed text-ink/60">{i.desc}</p>}
+                      </div>
+                      <p class="display shrink-0 text-lg">{i.price}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE BREAK -->
+    <section class="relative z-10 grid grid-cols-2 gap-0 md:grid-cols-4">
+      {
+        ['food-crocchette.jpg', 'pizza-overhead.jpg', 'food-plated.jpg', 'sharing-platter.jpg'].map((img) => (
+          <figure class="reveal-img reveal">
+            <img src={`/images/${img}`} alt="Dishes from the Something & Social kitchen" class="aspect-square w-full object-cover" loading="lazy" />
+          </figure>
+        ))
+      }
+    </section>
+
+    <!-- DRINKS -->
+    <section id="drinks" class="relative z-10 bg-ink text-white-warm scroll-mt-20">
+      <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-32">
+        <div class="reveal max-w-2xl">
+          <p class="kicker text-pink-bright">Drinks</p>
+          <h2 class="display mt-6 text-5xl md:text-6xl">From the bar.</h2>
+          <p class="mt-6 leading-relaxed text-white-warm/70">
+            Social Hour runs Monday to Friday, 3 till 5pm. $10 tap beers, house wines, raspberry mimosas and prosecco.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-x-16 gap-y-20 lg:grid-cols-2">
+          {
+            drinks.map((s) => (
+              <div class="reveal">
+                <p class="kicker text-pink-bright">{s.kicker}</p>
+                <h3 class="display mt-3 text-3xl md:text-4xl">{s.title}</h3>
+                <ul class="mt-8 divide-y divide-line-dark">
+                  {s.items.map((i) => (
+                    <li class="flex items-baseline justify-between gap-6 py-3.5">
+                      <div>
+                        <p class="font-medium">{i.name}</p>
+                        {i.desc && <p class="mt-0.5 text-sm leading-relaxed text-white-warm/55">{i.desc}</p>}
+                      </div>
+                      <p class="display shrink-0 text-lg">{i.price}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="reveal mt-20 flex flex-col items-start gap-6 border-t border-line-dark pt-10 md:flex-row md:items-center md:justify-between">
+          <p class="max-w-xl leading-relaxed text-white-warm/70">
+            The full designed menus, every wine and tap pour included. Download them below.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/menus/food-menu.pdf" target="_blank" rel="noopener" class="btn btn-pink">Food menu PDF</a>
+            <a href="/menus/drinks-menu.pdf" target="_blank" rel="noopener" class="btn btn-outline-light">Drinks menu PDF</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,169 @@
+---
+import Base from '../layouts/Base.astro';
+
+const spaces = [
+  {
+    name: 'Restaurant & Lounge',
+    cap: 'Standing 120 · Seated 80',
+    img: 'interior-dining.jpg',
+    alt: 'The open-kitchen restaurant and lounge',
+    copy: 'The open kitchen at work, comfortable booths and room to move. Cosy get-togethers to full-scale celebrations.',
+  },
+  {
+    name: 'Rooftop Terrace',
+    cap: 'Standing 120',
+    img: 'long-table.jpg',
+    alt: 'The rooftop terrace under orange umbrellas',
+    copy: 'Views down Broadway to the sea. Drinks, canapés and sunsets. The one everyone asks for.',
+  },
+  {
+    name: 'Courtyard',
+    cap: 'Standing 30 · Seated 30',
+    img: 'rooftop-garden.jpg',
+    alt: 'The green rooftop courtyard garden',
+    copy: 'A green pocket filled with plants. Relaxed, family-friendly, made for slow afternoons.',
+  },
+  {
+    name: 'Front Outside Courtyard',
+    cap: 'Seated 40',
+    img: 'courtyard.jpg',
+    alt: 'The front outside courtyard with umbrellas',
+    copy: 'A lively, inviting corner at the front of the venue. Trendy without trying too hard.',
+  },
+  {
+    name: 'Beside the Play Area',
+    cap: 'Standing 20 · Seated 16',
+    img: 'kids-play.jpg',
+    alt: 'The rooftop playground beside the venue',
+    copy: 'Right next to the rooftop playground. Parents relax, kids run wild, everyone wins.',
+  },
+  {
+    name: 'The Full Venue',
+    cap: 'Up to 250 guests',
+    img: 'terrace-umbrellas.jpg',
+    alt: 'The full rooftop venue in golden light',
+    copy: 'All of it. Restaurant, courtyards and terrace, exclusively yours for the big one.',
+  },
+];
+---
+
+<Base
+  title="Functions & Events | Something & Social Broadway, Newmarket"
+  description="Free venue hire on the rooftop of Westfield Newmarket. Five spaces for birthdays, corporate events, engagements and Christmas parties, up to 250 guests."
+>
+  <main>
+    <!-- HERO -->
+    <section class="relative flex min-h-[80svh] items-end overflow-hidden">
+      <img
+        src="/images/social-brunch.jpg"
+        alt="A group celebration around a long table with mimosas"
+        class="absolute inset-0 h-full w-full object-cover object-center"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-ink/40"></div>
+      <div class="relative mx-auto w-full max-w-[1600px] px-5 pb-16 md:px-10 md:pb-20">
+        <p class="kicker text-white-warm/80" data-load-fade>Celebrate &amp; social · Free venue hire</p>
+        <h1 class="display mt-5 max-w-4xl text-6xl text-white-warm md:text-8xl">
+          <span data-load-word>Your</span>
+          <span data-load-word>next</span>
+          <span data-load-word>bash</span>
+          <span data-load-word>awaits.</span>
+        </h1>
+        <div class="mt-8 flex flex-wrap gap-4" data-load-fade>
+          <a href="#enquire" class="btn btn-pink">Start planning</a>
+          <a href="#spaces" class="btn btn-outline-light">See the spaces</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="relative z-10 bg-paper">
+      <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-32">
+        <div class="grid gap-12 lg:grid-cols-12">
+          <div class="reveal lg:col-span-7">
+            <p class="kicker text-pink">How it works</p>
+            <h2 class="display mt-6 text-5xl md:text-6xl">No hire fee. No fuss.<br />Just the party.</h2>
+          </div>
+          <div class="reveal flex flex-col justify-end gap-4 lg:col-span-5">
+            <p class="leading-relaxed text-ink/75">
+              Birthdays, hens dos, baby showers, engagements, Christmas parties and corporate offsites. Pick a space,
+              pick a menu, and we handle the rest.
+            </p>
+            <p class="leading-relaxed text-ink/75">
+              Go set menu with mains, desserts and pizzas, or keep it loose with canapés and platters. Beverage
+              packages, cocktail trees and the full bar are all on the table.
+            </p>
+          </div>
+        </div>
+        <dl class="reveal-stagger mt-16 grid grid-cols-2 gap-6 border-t border-line pt-10 md:grid-cols-4">
+          {
+            [
+              ['Venue hire', 'Free'],
+              ['Capacity', '250'],
+              ['Spaces', 'Five'],
+              ['Menus', 'Set or sharing'],
+            ].map(([k, v]) => (
+              <div>
+                <dt class="kicker text-ink/45">{k}</dt>
+                <dd class="display mt-2 text-3xl md:text-4xl">{v}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <!-- SPACES -->
+    <section id="spaces" class="relative z-10 bg-cream scroll-mt-20">
+      <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-32">
+        <div class="reveal max-w-2xl">
+          <p class="kicker text-pink">Social spaces</p>
+          <h2 class="display mt-6 text-5xl md:text-6xl">Pick your corner.</h2>
+        </div>
+        <div class="mt-16 grid gap-x-6 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+          {
+            spaces.map((s) => (
+              <article class="reveal group">
+                <figure class="reveal-img overflow-hidden">
+                  <img src={`/images/${s.img}`} alt={s.alt} class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                </figure>
+                <div class="mt-6 flex items-baseline justify-between gap-4">
+                  <h3 class="display text-2xl">{s.name}</h3>
+                  <p class="kicker shrink-0 text-pink">{s.cap}</p>
+                </div>
+                <p class="mt-3 leading-relaxed text-ink/70">{s.copy}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ENQUIRE -->
+    <section id="enquire" class="relative z-10 bg-ink text-white-warm scroll-mt-20">
+      <div class="mx-auto grid max-w-[1600px] gap-16 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-2">
+        <div class="reveal">
+          <p class="kicker text-pink-bright">Ready to party</p>
+          <h2 class="display mt-6 text-5xl md:text-6xl">Let's start planning your bash.</h2>
+          <p class="mt-8 max-w-md leading-relaxed text-white-warm/70">
+            Tell us the date, the headcount and the occasion. Our functions team will come back with spaces, menus and
+            packages to match.
+          </p>
+          <div class="mt-10 space-y-2">
+            <p>
+              <a href="mailto:rm@sasnewmarket.co.nz?subject=Function%20enquiry" class="display text-2xl text-pink-bright transition hover:text-white-warm">rm@sasnewmarket.co.nz</a>
+            </p>
+            <p><a href="tel:+6492185085" class="display text-2xl transition hover:text-pink-bright">09 218 5085</a></p>
+          </div>
+          <p class="mt-10 text-sm text-white-warm/50">
+            Set menus with mains, desserts and pizzas, or canapés and platters for a looser vibe. Ask us for the full
+            packages and pricing.
+          </p>
+        </div>
+        <figure class="reveal-img reveal">
+          <img src="/images/group-table.jpg" alt="A big group gathered around a table of pizza and drinks" class="h-full w-full object-cover" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+  </main>
+</Base>

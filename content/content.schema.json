@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "business",
+      "label": "Business details",
+      "description": "Core venue info used across the whole site — name, contact, address, booking link.",
+      "fields": [
+        { "key": "business.name", "type": "text", "label": "Business name", "required": true, "maxLength": 80 },
+        { "key": "business.tagline", "type": "text", "label": "Tagline", "maxLength": 160, "help": "Short description used in meta tags." },
+        { "key": "business.phone.display", "type": "text", "label": "Phone (display)", "maxLength": 20 },
+        { "key": "business.phone.tel", "type": "text", "label": "Phone (tel link)", "maxLength": 20, "help": "Digits with country code, e.g. \"+6492185085\"." },
+        { "key": "business.email", "type": "email", "label": "Email" },
+        { "key": "business.address.line1", "type": "text", "label": "Address line 1", "maxLength": 80 },
+        { "key": "business.address.line2", "type": "text", "label": "Address line 2", "maxLength": 80 },
+        { "key": "business.bookUrl", "type": "url", "label": "Booking URL", "help": "NowBookIt link used by every Book a table button." },
+        { "key": "business.giftUrl", "type": "url", "label": "Gift voucher URL" },
+        { "key": "business.social.instagram", "type": "url", "label": "Instagram URL" },
+        { "key": "business.social.facebook", "type": "url", "label": "Facebook URL" },
+        { "key": "business.social.tiktok", "type": "url", "label": "TikTok URL" },
+        { "key": "business.hours.weekdays", "type": "text", "label": "Hours (Mon–Fri)", "maxLength": 40 },
+        { "key": "business.hours.weekends", "type": "text", "label": "Hours (Sat–Sun)", "maxLength": 40 }
+      ]
+    },
+    {
+      "id": "hero",
+      "label": "Home hero",
+      "description": "Full-bleed hero over the terrace photo.",
+      "fields": [
+        { "key": "hero.kicker", "type": "text", "label": "Kicker", "maxLength": 60 },
+        { "key": "hero.headline", "type": "text", "label": "Headline", "required": true, "maxLength": 40 },
+        { "key": "hero.subtitle", "type": "longtext", "label": "Subtitle", "maxLength": 200 },
+        { "key": "hero.image", "type": "image", "label": "Hero image", "minWidth": 2000, "aspectRatio": "3:2" },
+        { "key": "hero.ctaPrimary.label", "type": "text", "label": "Primary button label", "maxLength": 30 },
+        { "key": "hero.ctaSecondary.label", "type": "text", "label": "Secondary button label", "maxLength": 30 }
+      ]
+    },
+    {
+      "id": "intro",
+      "label": "Intro section",
+      "description": "The editorial intro with the two photos and the three stats.",
+      "fields": [
+        { "key": "intro.kicker", "type": "text", "label": "Kicker", "maxLength": 40 },
+        { "key": "intro.headline", "type": "text", "label": "Headline", "maxLength": 80 },
+        { "key": "intro.body1", "type": "longtext", "label": "Paragraph 1", "maxLength": 400 },
+        { "key": "intro.body2", "type": "longtext", "label": "Paragraph 2", "maxLength": 400 },
+        { "key": "intro.stats", "type": "list", "label": "Stats (label + value)", "help": "Three short stat pairs shown under the copy." }
+      ]
+    },
+    {
+      "id": "manifesto",
+      "label": "Manifesto",
+      "description": "The pinned brand statement. Line 2 renders in pink.",
+      "fields": [
+        { "key": "manifesto.kicker", "type": "text", "label": "Kicker", "maxLength": 40 },
+        { "key": "manifesto.line1", "type": "text", "label": "Line 1", "required": true, "maxLength": 60 },
+        { "key": "manifesto.line2", "type": "text", "label": "Line 2 (pink)", "required": true, "maxLength": 60 },
+        { "key": "manifesto.body", "type": "longtext", "label": "Supporting line", "maxLength": 300 }
+      ]
+    },
+    {
+      "id": "rituals",
+      "label": "Weekly deals",
+      "description": "The Social Rituals — one entry per day plus Social Hour. Shown on the home grid, the marquee, and What's On.",
+      "fields": [
+        { "key": "rituals.items", "type": "list", "label": "Deals (day, deal, note)", "required": true },
+        { "key": "rituals.extrasNote", "type": "longtext", "label": "Extras line under the grid", "maxLength": 300 }
+      ]
+    },
+    {
+      "id": "reviews",
+      "label": "Reviews",
+      "description": "Verbatim Google reviews. Never paraphrase.",
+      "fields": [
+        { "key": "reviews.headline", "type": "text", "label": "Section headline", "maxLength": 60 },
+        { "key": "reviews.items", "type": "list", "label": "Reviews (name + quote)", "required": true }
+      ]
+    },
+    {
+      "id": "functions",
+      "label": "Functions & spaces",
+      "description": "The event spaces with capacities, and the enquiry blurb.",
+      "fields": [
+        { "key": "functions.headline", "type": "text", "label": "Functions headline", "maxLength": 80 },
+        { "key": "functions.intro", "type": "longtext", "label": "Intro copy", "maxLength": 500 },
+        { "key": "functions.spaces", "type": "list", "label": "Spaces (name, capacity, blurb)", "required": true },
+        { "key": "functions.enquiryNote", "type": "longtext", "label": "Enquiry note", "maxLength": 300 }
+      ]
+    },
+    {
+      "id": "booking",
+      "label": "Booking section",
+      "description": "The big booking call-to-action at the bottom of the home page.",
+      "fields": [
+        { "key": "booking.headline", "type": "text", "label": "Headline", "maxLength": 40 },
+        { "key": "booking.buttonLabel", "type": "text", "label": "Button label", "maxLength": 30 },
+        { "key": "booking.finePrint", "type": "longtext", "label": "Fine print", "maxLength": 200 }
+      ]
+    },
+    {
+      "id": "seo",
+      "label": "SEO",
+      "description": "Page titles and meta descriptions.",
+      "fields": [
+        { "key": "seo.home.title", "type": "text", "label": "Home title", "maxLength": 90 },
+        { "key": "seo.home.description", "type": "longtext", "label": "Home meta description", "maxLength": 200 },
+        { "key": "seo.menu.title", "type": "text", "label": "Menus title", "maxLength": 90 },
+        { "key": "seo.whatson.title", "type": "text", "label": "What's On title", "maxLength": 90 },
+        { "key": "seo.functions.title", "type": "text", "label": "Functions title", "maxLength": 90 },
+        { "key": "seo.contact.title", "type": "text", "label": "Contact title", "maxLength": 90 }
+      ]
+    }
+  ]
+}

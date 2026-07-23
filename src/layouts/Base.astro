@@ -1,0 +1,114 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  dark?: boolean;
+}
+
+const { title, description, dark = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/terrace-umbrellas.jpg" />
+  </head>
+  <body class:list={[dark ? 'bg-ink' : 'bg-paper', 'overflow-x-clip']}>
+    <Nav dark={dark} />
+    <slot />
+    <Footer />
+
+    <script>
+      import Lenis from 'lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+      if (!prefersReduced && !isTouch) {
+        const lenis = new Lenis({ lerp: 0.11 });
+        (window as any).__lenis = lenis;
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      // page-load choreography
+      requestAnimationFrame(() => document.documentElement.classList.add('loaded'));
+
+      // scroll reveals
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.18, rootMargin: '0px 0px -6% 0px' }
+      );
+      document.querySelectorAll('.reveal, .reveal-stagger, .reveal-img').forEach((el) => io.observe(el));
+
+      // pinned manifesto (one per page, optional)
+      const manifesto = document.querySelector('[data-manifesto]');
+      if (manifesto && !prefersReduced) {
+        const lines = manifesto.querySelectorAll('[data-manifesto-line]');
+        gsap.fromTo(
+          lines,
+          { opacity: 0.14, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.35,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: manifesto,
+              start: 'top top',
+              end: '+=140%',
+              scrub: 0.6,
+              pin: true,
+            },
+          }
+        );
+      }
+
+      // gentle parallax on tagged images
+      if (!prefersReduced) {
+        document.querySelectorAll<HTMLElement>('[data-parallax]').forEach((el) => {
+          gsap.fromTo(
+            el,
+            { yPercent: -7 },
+            {
+              yPercent: 7,
+              ease: 'none',
+              scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.8 },
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>

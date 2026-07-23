@@ -1,0 +1,113 @@
+---
+interface Props {
+  dark?: boolean;
+}
+const { dark = false } = Astro.props;
+
+const links = [
+  { href: '/menu', label: 'Menus' },
+  { href: '/whats-on', label: "What's On" },
+  { href: '/functions', label: 'Functions' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const BOOK_URL =
+  'https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat';
+---
+
+<header
+  id="site-nav"
+  class="fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-500"
+  data-dark={dark ? 'true' : 'false'}
+>
+  <div class="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-4 md:px-10 md:py-5">
+    <a href="/" class="shrink-0" aria-label="Something & Social Broadway, home">
+      <img src="/images/logo-white.png" alt="Something & Social" class="logo-light h-7 w-auto md:h-8" />
+      <img src="/images/logo-pink.png" alt="" aria-hidden="true" class="logo-dark hidden h-7 w-auto md:h-8" />
+    </a>
+
+    <nav class="hidden items-center gap-9 lg:flex" aria-label="Primary">
+      {links.map((l) => (
+        <a href={l.href} class="nav-link kicker transition-opacity duration-300 hover:opacity-60">{l.label}</a>
+      ))}
+      <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink !py-3 !px-6">Book a table</a>
+    </nav>
+
+    <button
+      id="nav-toggle"
+      class="nav-link kicker flex items-center gap-3 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      Menu
+      <span class="flex flex-col gap-1.5">
+        <span class="nav-bar block h-px w-6 bg-current transition-transform duration-300"></span>
+        <span class="nav-bar block h-px w-6 bg-current transition-transform duration-300"></span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site menu"
+  class="fixed inset-0 z-40 hidden flex-col justify-between bg-ink px-6 pb-10 pt-28 text-white-warm lg:hidden"
+>
+  <nav class="flex flex-col gap-2" aria-label="Mobile">
+    <a href="/" class="display text-4xl py-2">Home</a>
+    {links.map((l) => (
+      <a href={l.href} class="display text-4xl py-2">{l.label}</a>
+    ))}
+  </nav>
+  <div class="flex flex-col gap-5">
+    <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink w-full">Book a table</a>
+    <p class="kicker text-white-warm/50">Level 3, Westfield Newmarket · 309 Broadway</p>
+  </div>
+</div>
+
+<style>
+  /* over hero (transparent): light text */
+  #site-nav .nav-link { color: var(--color-white-warm); }
+  #site-nav .logo-dark { display: none; }
+
+  /* scrolled state: paper bar, ink text */
+  #site-nav.scrolled { background: color-mix(in srgb, var(--color-paper) 92%, transparent); box-shadow: 0 1px 0 var(--color-line); backdrop-filter: blur(12px); }
+  #site-nav.scrolled .nav-link { color: var(--color-ink); }
+  #site-nav.scrolled .logo-light { display: none; }
+  #site-nav.scrolled .logo-dark { display: block; }
+
+  /* dark pages keep ink bar when scrolled */
+  #site-nav[data-dark='true'].scrolled { background: color-mix(in srgb, var(--color-ink) 92%, transparent); box-shadow: 0 1px 0 var(--color-line-dark); }
+  #site-nav[data-dark='true'].scrolled .nav-link { color: var(--color-white-warm); }
+  #site-nav[data-dark='true'].scrolled .logo-light { display: block; }
+  #site-nav[data-dark='true'].scrolled .logo-dark { display: none; }
+</style>
+
+<script>
+  const nav = document.getElementById('site-nav')!;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const toggle = document.getElementById('nav-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  const setMenu = (open: boolean) => {
+    menu.classList.toggle('hidden', !open);
+    menu.classList.toggle('flex', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    (window as any).__lenis?.[open ? 'stop' : 'start']();
+  };
+
+  toggle.addEventListener('click', () => setMenu(menu.classList.contains('hidden')));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) setMenu(false);
+  });
+  // leaving the mobile breakpoint must release the scroll lock
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
+    if (e.matches) setMenu(false);
+  });
+</script>
