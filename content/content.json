@@ -16,8 +16,8 @@
       "tiktok": "https://www.tiktok.com/@somethingandsocial"
     },
     "hours": {
-      "weekdays": "Mon – Fri · 11am – late",
-      "weekends": "Sat – Sun · 10am – late"
+      "weekdays": "Mon to Fri · 11am till late",
+      "weekends": "Sat to Sun · 10am till late"
     }
   },
   "hero": {
@@ -52,7 +52,7 @@
       { "day": "Wednesday", "deal": "2 Margheritas, $40", "note": "Dine-in only. Bring a mate." },
       { "day": "Thursday", "deal": "$15 cocktails", "note": "The whole social cocktail list." },
       { "day": "Friday", "deal": "$15 spritz", "note": "Limoncello to tequila. Sun optional." },
-      { "day": "Mon – Fri, 3 – 5pm", "deal": "Social Hour", "note": "$10 tap beers, house wines, mimosas and prosecco." }
+      { "day": "Mon to Fri, 3 to 5pm", "deal": "Social Hour", "note": "$10 tap beers, house wines, mimosas and prosecco." }
     ],
     "extrasNote": "Plus brunch every day till 3pm, kids under 12 eat free on Sundays, and a free dessert for the birthday star."
   },
