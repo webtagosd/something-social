@@ -75,9 +75,6 @@ const EXEMPT_KEYS = new Set([
   "business.tagline",
   // Builds the tel: hrefs; tel links are never attr-bound, the visible business.phone.display text is.
   "business.phone.tel",
-  // functions page h2 splits this value with a <br />; rendered plainly it orphans "party." on its
-  // own line, so it stays hardcoded (listed in the live-canvas report).
-  "functions.headline",
 ]);
 // Alt-text fields are never data-wt-attr="alt" bound in this contract (same
 // as the reference template's own <Image alt=...> usages) — alt text isn't a

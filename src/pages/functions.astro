@@ -51,7 +51,7 @@ const spaceImages = [
           <div class="reveal lg:col-span-7">
             <p class="kicker text-pink">How it works</p>
             {/* ponytail: functions.headline left hardcoded; the <br /> composition is lost when the plain value renders */}
-            <h2 class="display mt-6 text-5xl md:text-6xl">No hire fee. No fuss.<br />Just the party.</h2>
+            <h2 class="display mt-6 text-5xl md:text-6xl" data-wt="functions.headline">{(() => { const h = content.functions.headline; const i = h.lastIndexOf(". ", h.length - 2); return i < 0 ? h : <>{h.slice(0, i + 1)}<br />{h.slice(i + 2)}</>; })()}</h2>
           </div>
           <div class="reveal flex flex-col justify-end gap-4 lg:col-span-5">
             <p class="leading-relaxed text-ink/75" data-wt="functions.intro">{functions.intro}</p>
