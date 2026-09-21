@@ -1,4 +1,6 @@
 ---
+import content from '../../content/content.json';
+
 interface Props {
   dark?: boolean;
 }
@@ -11,8 +13,7 @@ const links = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const BOOK_URL =
-  'https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat';
+const BOOK_URL = content.business.bookUrl;
 ---
 
 <header
@@ -30,7 +31,7 @@ const BOOK_URL =
       {links.map((l) => (
         <a href={l.href} class="nav-link kicker transition-opacity duration-300 hover:opacity-60">{l.label}</a>
       ))}
-      <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink !py-3 !px-6">Book a table</a>
+      <a href={BOOK_URL} data-wt="business.bookUrl" data-wt-attr="href" target="_blank" rel="noopener" class="btn btn-pink !py-3 !px-6">Book a table</a>
     </nav>
 
     <button
@@ -62,7 +63,7 @@ const BOOK_URL =
     ))}
   </nav>
   <div class="flex flex-col gap-5">
-    <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink w-full">Book a table</a>
+    <a href={BOOK_URL} data-wt="business.bookUrl" data-wt-attr="href" target="_blank" rel="noopener" class="btn btn-pink w-full">Book a table</a>
     <p class="kicker text-white-warm/50">Level 3, Westfield Newmarket · 309 Broadway</p>
   </div>
 </div>

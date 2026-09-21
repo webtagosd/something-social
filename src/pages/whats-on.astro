@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import content from '../../content/content.json';
+
+const { business, seo } = content;
 
 const week = [
   { day: 'Monday', deal: '$20 Pastas', note: 'Buy any drink and we sling you any pasta on the menu for $20.', img: 'food-plated.jpg' },
@@ -12,7 +15,7 @@ const week = [
 ---
 
 <Base
-  title="What's On | Something & Social Broadway, Newmarket"
+  title={seo.whatson.title}
   description="Weekly deals on the Newmarket rooftop. $20 pastas Monday, $25 steak Tuesday, 2-for-$40 pizzas Wednesday, $15 cocktails Thursday, $15 spritz Friday and Social Hour every weekday."
   dark
 >
@@ -106,7 +109,9 @@ const week = [
                 <p class="mt-2 leading-relaxed text-ink/70">
                   Choosing gifts is hard. A voucher for a good time is not.
                   <a
-                    href="https://giftcards.nowbookit.com/cards/card-selection?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&accent=232,25,93"
+                    href={business.giftUrl}
+                    data-wt="business.giftUrl"
+                    data-wt-attr="href"
                     target="_blank"
                     rel="noopener"
                     class="text-pink underline underline-offset-4 transition hover:text-ink"

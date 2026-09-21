@@ -1,6 +1,7 @@
 ---
-const BOOK_URL =
-  'https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat';
+import content from '../../content/content.json';
+
+const { business } = content;
 ---
 
 <footer class="relative z-10 border-t border-line-dark bg-ink text-white-warm">
@@ -16,40 +17,38 @@ const BOOK_URL =
       <div class="md:col-span-3">
         <p class="kicker text-white-warm/40">Visit</p>
         <address class="mt-5 space-y-1 not-italic leading-relaxed text-white-warm/80">
-          <p>Rooftop, Level 3</p>
-          <p>Westfield Newmarket</p>
-          <p>309 Broadway, Newmarket</p>
-          <p>Auckland</p>
+          <p data-wt="business.address.line1">{business.address.line1}</p>
+          <p data-wt="business.address.line2">{business.address.line2}</p>
         </address>
         <p class="kicker mt-8 text-white-warm/40">Hours</p>
         <div class="mt-5 space-y-1 leading-relaxed text-white-warm/80">
-          <p>Mon – Fri · 11am – late</p>
-          <p>Sat – Sun · 10am – late</p>
+          <p data-wt="business.hours.weekdays">{business.hours.weekdays}</p>
+          <p data-wt="business.hours.weekends">{business.hours.weekends}</p>
         </div>
       </div>
 
       <div class="md:col-span-4">
         <p class="kicker text-white-warm/40">Contact</p>
         <div class="mt-5 space-y-1 leading-relaxed">
-          <p><a href="tel:+6492185085" class="text-white-warm/80 transition hover:text-pink-bright">09 218 5085</a></p>
+          <p><a href={`tel:${business.phone.tel}`} class="text-white-warm/80 transition hover:text-pink-bright" data-wt="business.phone.display">{business.phone.display}</a></p>
           <p>
-            <a href="mailto:rm@sasnewmarket.co.nz" class="text-white-warm/80 transition hover:text-pink-bright"
-              >rm@sasnewmarket.co.nz</a
+            <a href={`mailto:${business.email}`} class="text-white-warm/80 transition hover:text-pink-bright" data-wt="business.email"
+              >{business.email}</a
             >
           </p>
         </div>
         <p class="kicker mt-8 text-white-warm/40">Follow</p>
         <div class="mt-5 flex gap-6">
-          <a href="https://www.instagram.com/somethingandsocial" target="_blank" rel="noopener" class="text-white-warm/80 transition hover:text-pink-bright">Instagram</a>
-          <a href="https://www.facebook.com/somethingandsocial" target="_blank" rel="noopener" class="text-white-warm/80 transition hover:text-pink-bright">Facebook</a>
-          <a href="https://www.tiktok.com/@somethingandsocial" target="_blank" rel="noopener" class="text-white-warm/80 transition hover:text-pink-bright">TikTok</a>
+          <a href={business.social.instagram} data-wt="business.social.instagram" data-wt-attr="href" target="_blank" rel="noopener" class="text-white-warm/80 transition hover:text-pink-bright">Instagram</a>
+          <a href={business.social.facebook} data-wt="business.social.facebook" data-wt-attr="href" target="_blank" rel="noopener" class="text-white-warm/80 transition hover:text-pink-bright">Facebook</a>
+          <a href={business.social.tiktok} data-wt="business.social.tiktok" data-wt-attr="href" target="_blank" rel="noopener" class="text-white-warm/80 transition hover:text-pink-bright">TikTok</a>
         </div>
-        <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink mt-10">Book a table</a>
+        <a href={business.bookUrl} data-wt="business.bookUrl" data-wt-attr="href" target="_blank" rel="noopener" class="btn btn-pink mt-10">Book a table</a>
       </div>
     </div>
 
     <div class="mt-20 flex flex-col gap-3 border-t border-line-dark pt-8 text-sm text-white-warm/40 md:flex-row md:items-center md:justify-between">
-      <p>© {new Date().getFullYear()} Something & Social Broadway. All rights reserved.</p>
+      <p>© {new Date().getFullYear()} <span data-wt="business.name">{business.name}</span>. All rights reserved.</p>
       <p>
         Also on the North Shore:
         <a href="https://www.somethingandsocial.co.nz/albany" target="_blank" rel="noopener" class="underline underline-offset-4 transition hover:text-pink-bright">Something & Social Albany</a>

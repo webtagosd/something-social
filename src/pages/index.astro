@@ -1,65 +1,39 @@
 ---
 import Base from '../layouts/Base.astro';
+import content from '../../content/content.json';
 
-const BOOK_URL =
-  'https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat';
-
-const rituals = [
-  { day: 'Monday', deal: '$20 pastas', note: 'Buy any drink, we sling you a pasta.' },
-  { day: 'Tuesday', deal: '$25 steak night', note: '200g steak, salad and fries.' },
-  { day: 'Wednesday', deal: '2 Margheritas, $40', note: 'Dine-in only. Bring a mate.' },
-  { day: 'Thursday', deal: '$15 cocktails', note: 'The whole social cocktail list.' },
-  { day: 'Friday', deal: '$15 spritz', note: 'Limoncello to tequila. Sun optional.' },
-  { day: 'Mon – Fri, 3 – 5pm', deal: 'Social Hour', note: '$10 tap beers, house wines, mimosas and prosecco.' },
-];
-
-const reviews = [
-  {
-    name: 'Irene Lizardo',
-    quote:
-      'Celebrated my son’s 29th birthday at the rooftop. Very happy with our order and their service. Social platter was massive, and the mocktails did not disappoint. 5 star rating overall for food, service and experience.',
-  },
-  {
-    name: 'Yebin Lee',
-    quote:
-      'Visited on busy Friday night, yet the service was epic. Zero confusion, no rushing, everyone nice and kind. Perfect suggestions on food and very attentive. Nice and cozy atmosphere, nice bar.',
-  },
-  {
-    name: 'Jonivie',
-    quote:
-      'Thank you so much for accommodating our last minute booking for 16 people on a Sunday lunch. Service was topnotch and food was incredibly delicious. Highly recommended and will definitely be coming back.',
-  },
-];
+const { business, hero, intro, manifesto, rituals, reviews, functions, booking, seo } = content;
+const heroWords = hero.headline.split(' ');
+const socialHour = rituals.items[rituals.items.length - 1];
+// home "spaces" teaser shows four of the functions spaces
+const teaserSpaces = [0, 1, 2, 5];
 ---
 
-<Base
-  title="Something & Social Broadway | Rooftop Restaurant & Cocktail Bar, Newmarket"
-  description="Newmarket's rooftop restaurant and cocktail bar on Level 3, Westfield Newmarket. Wood-fired pizza, fresh pasta, social cocktails and five spaces with free venue hire."
->
+<Base title={seo.home.title} description={seo.home.description}>
   <main>
     <!-- HERO (sticky, next section climbs over) -->
     <section class="sticky top-0 h-svh w-full overflow-hidden">
       <img
-        src="/images/terrace-umbrellas.jpg"
+        src={hero.image}
+        data-wt="hero.image"
+        data-wt-attr="src"
         alt="The Something & Social rooftop terrace under orange umbrellas, full of people"
         class="absolute inset-0 h-full w-full object-cover"
         fetchpriority="high"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/40"></div>
       <div class="relative mx-auto flex h-full w-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-20">
-        <p class="kicker text-white-warm/80" data-load-fade>Rooftop · Level 3, Westfield Newmarket</p>
-        <h1 class="display mt-5 max-w-5xl text-6xl text-white-warm md:text-8xl lg:text-9xl">
-          <span data-load-word>Perched</span>
-          <span data-load-word>above</span>
-          <span data-load-word>Broadway.</span>
+        <p class="kicker text-white-warm/80" data-load-fade data-wt="hero.kicker">{hero.kicker}</p>
+        <h1 class="display mt-5 max-w-5xl text-6xl text-white-warm md:text-8xl lg:text-9xl" data-wt="hero.headline">
+          {heroWords.map((w) => (
+            <Fragment><span data-load-word>{w}</span>{' '}</Fragment>
+          ))}
         </h1>
         <div class="mt-8 flex max-w-3xl flex-col gap-8 md:mt-10 md:flex-row md:items-end md:justify-between" data-load-fade>
-          <p class="max-w-sm leading-relaxed text-white-warm/85">
-            Newmarket's rooftop restaurant and cocktail bar. Wood-fired pizza, fresh pasta and long afternoons in the sun.
-          </p>
+          <p class="max-w-sm leading-relaxed text-white-warm/85" data-wt="hero.subtitle">{hero.subtitle}</p>
           <div class="flex shrink-0 gap-4">
-            <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink">Book a table</a>
-            <a href="/menu" class="btn btn-outline-light">The menus</a>
+            <a href={business.bookUrl} data-wt="business.bookUrl" data-wt-attr="href" target="_blank" rel="noopener" class="btn btn-pink"><span data-wt="hero.ctaPrimary.label">{hero.ctaPrimary.label}</span></a>
+            <a href="/menu" class="btn btn-outline-light" data-wt="hero.ctaSecondary.label">{hero.ctaSecondary.label}</a>
           </div>
         </div>
       </div>
@@ -70,13 +44,13 @@ const reviews = [
       <div class="marquee-track gap-0">
         {[0, 1].map(() => (
           <div class="flex shrink-0 items-center" aria-hidden="true">
-            {rituals.slice(0, 5).map((r) => (
+            {rituals.items.slice(0, -1).map((r) => (
               <span class="kicker flex items-center whitespace-nowrap px-6">
                 {r.day} · {r.deal} <span class="ml-12 text-orange">✺</span>
               </span>
             ))}
             <span class="kicker flex items-center whitespace-nowrap px-6">
-              Social Hour · Mon – Fri, 3 – 5pm <span class="ml-12 text-orange">✺</span>
+              {socialHour.deal} · {socialHour.day} <span class="ml-12 text-orange">✺</span>
             </span>
           </div>
         ))}
@@ -88,28 +62,17 @@ const reviews = [
       <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-36">
         <div class="grid gap-16 lg:grid-cols-12">
           <div class="reveal lg:col-span-5">
-            <p class="kicker text-pink">The social hub</p>
-            <h2 class="display mt-6 text-5xl md:text-6xl">One level above the rush.</h2>
-            <p class="mt-8 max-w-md leading-relaxed text-ink/75">
-              An open kitchen, a garden courtyard and a terrace with views down Broadway to the sea. Brunch till 3pm
-              every day, dinner under the lights, and a cocktail list that takes its job seriously.
-            </p>
-            <p class="mt-4 max-w-md leading-relaxed text-ink/75">
-              Bring the crew, bring the kids, bring the office. We keep the good times fed.
-            </p>
+            <p class="kicker text-pink" data-wt="intro.kicker">{intro.kicker}</p>
+            <h2 class="display mt-6 text-5xl md:text-6xl" data-wt="intro.headline">{intro.headline}</h2>
+            <p class="mt-8 max-w-md leading-relaxed text-ink/75" data-wt="intro.body1">{intro.body1}</p>
+            <p class="mt-4 max-w-md leading-relaxed text-ink/75" data-wt="intro.body2">{intro.body2}</p>
             <dl class="mt-12 grid grid-cols-3 gap-6 border-t border-line pt-8">
-              <div>
-                <dt class="kicker text-ink/45">Capacity</dt>
-                <dd class="display mt-2 text-3xl">250</dd>
-              </div>
-              <div>
-                <dt class="kicker text-ink/45">Spaces</dt>
-                <dd class="display mt-2 text-3xl">Five</dd>
-              </div>
-              <div>
-                <dt class="kicker text-ink/45">Venue hire</dt>
-                <dd class="display mt-2 text-3xl">Free</dd>
-              </div>
+              {intro.stats.map((st, i) => (
+                <div>
+                  <dt class="kicker text-ink/45" data-wt={`intro.stats.${i}.label`}>{st.label}</dt>
+                  <dd class="display mt-2 text-3xl" data-wt={`intro.stats.${i}.value`}>{st.value}</dd>
+                </div>
+              ))}
             </dl>
           </div>
           <div class="grid gap-6 sm:grid-cols-2 lg:col-span-7">
@@ -127,14 +90,10 @@ const reviews = [
     <!-- MANIFESTO (pinned) -->
     <section class="relative z-10 flex h-svh items-center bg-ink text-white-warm" data-manifesto>
       <div class="mx-auto w-full max-w-[1600px] px-5 md:px-10">
-        <p class="kicker text-pink-bright" data-manifesto-line>The deal is simple</p>
-        <p class="display mt-8 text-5xl md:text-7xl lg:text-8xl" data-manifesto-line>You do the something.</p>
-        <p class="display mt-4 text-5xl text-pink-bright md:text-7xl lg:text-8xl" data-manifesto-line>
-          We'll do the social.
-        </p>
-        <p class="mt-10 max-w-md leading-relaxed text-white-warm/60" data-manifesto-line>
-          Birthdays. Long lunches. Wednesday for no reason. Whatever you're up to, the kitchen and the bar have your back.
-        </p>
+        <p class="kicker text-pink-bright" data-manifesto-line data-wt="manifesto.kicker">{manifesto.kicker}</p>
+        <p class="display mt-8 text-5xl md:text-7xl lg:text-8xl" data-manifesto-line data-wt="manifesto.line1">{manifesto.line1}</p>
+        <p class="display mt-4 text-5xl text-pink-bright md:text-7xl lg:text-8xl" data-manifesto-line data-wt="manifesto.line2">{manifesto.line2}</p>
+        <p class="mt-10 max-w-md leading-relaxed text-white-warm/60" data-manifesto-line data-wt="manifesto.body">{manifesto.body}</p>
       </div>
     </section>
 
@@ -199,17 +158,17 @@ const reviews = [
         </div>
         <div class="reveal-stagger mt-16 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {
-            rituals.map((r) => (
+            rituals.items.map((r, i) => (
               <div class="group bg-paper p-8 transition-colors duration-500 hover:bg-ink lg:p-10">
-                <p class="kicker text-pink transition-colors group-hover:text-pink-bright">{r.day}</p>
-                <p class="display mt-4 text-3xl transition-colors group-hover:text-white-warm md:text-4xl">{r.deal}</p>
-                <p class="mt-3 leading-relaxed text-ink/65 transition-colors group-hover:text-white-warm/70">{r.note}</p>
+                <p class="kicker text-pink transition-colors group-hover:text-pink-bright" data-wt={`rituals.items.${i}.day`}>{r.day}</p>
+                <p class="display mt-4 text-3xl transition-colors group-hover:text-white-warm md:text-4xl" data-wt={`rituals.items.${i}.deal`}>{r.deal}</p>
+                <p class="mt-3 leading-relaxed text-ink/65 transition-colors group-hover:text-white-warm/70" data-wt={`rituals.items.${i}.note`}>{r.note}</p>
               </div>
             ))
           }
         </div>
         <p class="reveal mt-10 text-ink/60">
-          Plus brunch every day till 3pm, kids under 12 eat free on Sundays, and a free dessert for the birthday star.
+          <span data-wt="rituals.extrasNote">{rituals.extrasNote}</span>
           <a href="/whats-on" class="text-pink underline underline-offset-4 transition hover:text-ink">See what's on</a>
         </p>
       </div>
@@ -235,15 +194,10 @@ const reviews = [
         </p>
         <ul class="reveal-stagger mt-10 max-w-md divide-y divide-line-dark">
           {
-            [
-              ['Restaurant & Lounge', 'Standing 120 · Seated 80'],
-              ['Rooftop Terrace', 'Standing 120'],
-              ['Courtyard', 'Standing 30 · Seated 30'],
-              ['Full venue', 'Up to 250 guests'],
-            ].map(([name, cap]) => (
+            teaserSpaces.map((i) => (
               <li class="flex items-baseline justify-between gap-6 py-4">
-                <span class="display text-xl">{name}</span>
-                <span class="kicker text-white-warm/50">{cap}</span>
+                <span class="display text-xl" data-wt={`functions.spaces.${i}.name`}>{functions.spaces[i].name}</span>
+                <span class="kicker text-white-warm/50" data-wt={`functions.spaces.${i}.capacity`}>{functions.spaces[i].capacity}</span>
               </li>
             ))
           }
@@ -257,14 +211,14 @@ const reviews = [
       <div class="mx-auto max-w-[1600px] px-5 py-24 md:px-10 md:py-36">
         <div class="reveal">
           <p class="kicker text-pink">Kind words</p>
-          <h2 class="display mt-6 text-5xl md:text-6xl">The socializers' buzz.</h2>
+          <h2 class="display mt-6 text-5xl md:text-6xl" data-wt="reviews.headline">{reviews.headline}</h2>
         </div>
         <div class="reveal-stagger mt-16 grid gap-12 md:grid-cols-3">
           {
-            reviews.map((r) => (
+            reviews.items.map((r, i) => (
               <blockquote class="flex flex-col justify-between gap-8 border-t border-line pt-8">
-                <p class="display-italic text-xl leading-snug text-ink/85">“{r.quote}”</p>
-                <footer class="kicker text-ink/50">{r.name} · Google review</footer>
+                <p class="display-italic text-xl leading-snug text-ink/85">“<span data-wt={`reviews.items.${i}.quote`}>{r.quote}</span>”</p>
+                <footer class="kicker text-ink/50"><span data-wt={`reviews.items.${i}.name`}>{r.name}</span> · Google review</footer>
               </blockquote>
             ))
           }
@@ -275,12 +229,9 @@ const reviews = [
     <!-- BOOKING -->
     <section class="relative z-10 bg-blush">
       <div class="mx-auto flex max-w-[1600px] flex-col items-center px-5 py-28 text-center md:py-40">
-        <h2 class="display reveal text-6xl md:text-8xl">Pull up a chair.</h2>
-        <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-ink reveal mt-12">Book your table</a>
-        <p class="reveal mt-8 text-sm text-ink/60">
-          Groups of 8 or more, call <a href="tel:+6492185085" class="underline underline-offset-4">09 218 5085</a> and
-          we'll sort you out.
-        </p>
+        <h2 class="display reveal text-6xl md:text-8xl" data-wt="booking.headline">{booking.headline}</h2>
+        <a href={business.bookUrl} data-wt="business.bookUrl" data-wt-attr="href" target="_blank" rel="noopener" class="btn btn-ink reveal mt-12"><span data-wt="booking.buttonLabel">{booking.buttonLabel}</span></a>
+        <p class="reveal mt-8 text-sm text-ink/60" data-wt="booking.finePrint">{booking.finePrint}</p>
       </div>
     </section>
   </main>

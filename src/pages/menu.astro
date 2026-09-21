@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import content from '../../content/content.json';
 
 type Item = { name: string; desc?: string; price: string };
 type Section = { kicker: string; title: string; note?: string; items: Item[] };
@@ -190,7 +191,7 @@ const drinks: Section[] = [
 ---
 
 <Base
-  title="Menus | Something & Social Broadway, Newmarket"
+  title={content.seo.menu.title}
   description="Wood-fired pizza, fresh pasta, sharing plates, social cocktails and spritz on the rooftop of Westfield Newmarket. Brunch till 3pm every day."
 >
   <main>

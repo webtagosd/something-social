@@ -1,12 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import content from '../../content/content.json';
 
-const BOOK_URL =
-  'https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat';
+const { business, seo } = content;
 ---
 
 <Base
-  title="Contact & Find Us | Something & Social Broadway, Newmarket"
+  title={seo.contact.title}
   description="Find Something & Social on the rooftop, Level 3 of Westfield Newmarket, 309 Broadway. Open 7 days. Call 09 218 5085 for groups of 8 or more."
 >
   <main>
@@ -38,8 +38,8 @@ const BOOK_URL =
               <p class="kicker text-pink">Find us</p>
               <h2 class="display mt-6 text-4xl md:text-5xl">One level up,<br />impossible to miss.</h2>
               <address class="mt-8 space-y-1 not-italic leading-relaxed text-ink/75">
-                <p>Rooftop, Level 3, Westfield Newmarket</p>
-                <p>309 Broadway, Newmarket, Auckland</p>
+                <p data-wt="business.address.line1">{business.address.line1}</p>
+                <p data-wt="business.address.line2">{business.address.line2}</p>
               </address>
               <p class="mt-4 leading-relaxed text-ink/75">
                 Take the lifts to Level 3 and follow the sun.
@@ -50,16 +50,16 @@ const BOOK_URL =
               <div class="grid grid-cols-2 gap-4 py-5">
                 <dt class="kicker pt-1 text-ink/45">Hours</dt>
                 <dd class="leading-relaxed text-ink/80">
-                  Mon – Fri · 11am – late<br />Sat – Sun · 10am – late
+                  <span data-wt="business.hours.weekdays">{business.hours.weekdays}</span><br /><span data-wt="business.hours.weekends">{business.hours.weekends}</span>
                 </dd>
               </div>
               <div class="grid grid-cols-2 gap-4 py-5">
                 <dt class="kicker pt-1 text-ink/45">Phone</dt>
-                <dd><a href="tel:+6492185085" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">09 218 5085</a></dd>
+                <dd><a href={`tel:${business.phone.tel}`} class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline" data-wt="business.phone.display">{business.phone.display}</a></dd>
               </div>
               <div class="grid grid-cols-2 gap-4 py-5">
                 <dt class="kicker pt-1 text-ink/45">Email</dt>
-                <dd><a href="mailto:rm@sasnewmarket.co.nz" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">rm@sasnewmarket.co.nz</a></dd>
+                <dd><a href={`mailto:${business.email}`} class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline" data-wt="business.email">{business.email}</a></dd>
               </div>
               <div class="grid grid-cols-2 gap-4 py-5">
                 <dt class="kicker pt-1 text-ink/45">Groups of 8+</dt>
@@ -68,15 +68,15 @@ const BOOK_URL =
               <div class="grid grid-cols-2 gap-4 py-5">
                 <dt class="kicker pt-1 text-ink/45">Follow</dt>
                 <dd class="flex flex-wrap gap-x-5 gap-y-1">
-                  <a href="https://www.instagram.com/somethingandsocial" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">Instagram</a>
-                  <a href="https://www.facebook.com/somethingandsocial" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">Facebook</a>
-                  <a href="https://www.tiktok.com/@somethingandsocial" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">TikTok</a>
+                  <a href={business.social.instagram} data-wt="business.social.instagram" data-wt-attr="href" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">Instagram</a>
+                  <a href={business.social.facebook} data-wt="business.social.facebook" data-wt-attr="href" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">Facebook</a>
+                  <a href={business.social.tiktok} data-wt="business.social.tiktok" data-wt-attr="href" target="_blank" rel="noopener" class="text-ink/80 underline-offset-4 transition hover:text-pink hover:underline">TikTok</a>
                 </dd>
               </div>
             </dl>
 
             <div class="reveal mt-12 flex flex-wrap gap-4">
-              <a href={BOOK_URL} target="_blank" rel="noopener" class="btn btn-pink">Book a table</a>
+              <a href={business.bookUrl} data-wt="business.bookUrl" data-wt-attr="href" target="_blank" rel="noopener" class="btn btn-pink">Book a table</a>
               <a href="/functions#enquire" class="btn btn-ink">Function enquiry</a>
             </div>
           </div>
@@ -103,7 +103,7 @@ const BOOK_URL =
           <p class="kicker text-pink">Careers</p>
           <p class="display mt-3 text-3xl md:text-4xl">Join the crew.</p>
         </div>
-        <a href="mailto:rm@sasnewmarket.co.nz?subject=Careers%20at%20Something%20%26%20Social%20Broadway" class="btn btn-ink">
+        <a href={`mailto:${business.email}?subject=Careers%20at%20Something%20%26%20Social%20Broadway`} class="btn btn-ink">
           Get in touch
         </a>
       </div>
