@@ -1,63 +1,60 @@
 {
-  "business": {
-    "name": "Something & Social Broadway",
-    "tagline": "Newmarket's rooftop restaurant and cocktail bar on Level 3, Westfield Newmarket.",
-    "phone": { "display": "09 218 5085", "tel": "+6492185085" },
-    "email": "rm@sasnewmarket.co.nz",
-    "address": {
-      "line1": "Rooftop, Level 3, Westfield Newmarket",
-      "line2": "309 Broadway, Newmarket, Auckland"
+  "seo": {
+    "home": {
+      "title": "Something & Social Broadway | Rooftop Restaurant & Cocktail Bar, Newmarket",
+      "description": "Newmarket's rooftop restaurant and cocktail bar on Level 3, Westfield Newmarket. Wood-fired pizza, fresh pasta, social cocktails and five spaces with free venue hire."
     },
-    "bookUrl": "https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat",
-    "giftUrl": "https://giftcards.nowbookit.com/cards/card-selection?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&accent=232,25,93",
-    "social": {
-      "instagram": "https://www.instagram.com/somethingandsocial",
-      "facebook": "https://www.facebook.com/somethingandsocial",
-      "tiktok": "https://www.tiktok.com/@somethingandsocial"
+    "menu": {
+      "title": "Menus | Something & Social Broadway, Newmarket"
     },
-    "hours": {
-      "weekdays": "Mon to Fri · 11am till late",
-      "weekends": "Sat to Sun · 10am till late"
+    "contact": {
+      "title": "Contact & Find Us | Something & Social Broadway, Newmarket"
+    },
+    "whatson": {
+      "title": "What's On | Something & Social Broadway, Newmarket"
+    },
+    "functions": {
+      "title": "Functions & Events | Something & Social Broadway, Newmarket"
     }
   },
   "hero": {
+    "image": "https://media.webtag.co.nz/sites/b0ebddd1-07c9-4ff8-84f5-40e2ad0c2bfe/site-1790039686298/images/terrace-umbrellas.jpg",
     "kicker": "Rooftop · Level 3, Westfield Newmarket",
     "headline": "Perched above Broadway.",
     "subtitle": "Newmarket's rooftop restaurant and cocktail bar. Wood-fired pizza, fresh pasta and long afternoons in the sun.",
-    "image": "/images/terrace-umbrellas.jpg",
-    "ctaPrimary": { "label": "Book a table" },
-    "ctaSecondary": { "label": "The menus" }
+    "ctaPrimary": {
+      "label": "Book a table"
+    },
+    "ctaSecondary": {
+      "label": "The menus"
+    }
   },
   "intro": {
-    "kicker": "The social hub",
-    "headline": "One level above the rush.",
     "body1": "An open kitchen, a garden courtyard and a terrace with views down Broadway to the sea. Brunch till 3pm every day, dinner under the lights, and a cocktail list that takes its job seriously.",
     "body2": "Bring the crew, bring the kids, bring the office. We keep the good times fed.",
     "stats": [
-      { "label": "Capacity", "value": "250" },
-      { "label": "Spaces", "value": "Five" },
-      { "label": "Venue hire", "value": "Free" }
-    ]
-  },
-  "manifesto": {
-    "kicker": "The deal is simple",
-    "line1": "You do the something.",
-    "line2": "We'll do the social.",
-    "body": "Birthdays. Long lunches. Wednesday for no reason. Whatever you're up to, the kitchen and the bar have your back."
-  },
-  "rituals": {
-    "items": [
-      { "day": "Monday", "deal": "$20 pastas", "note": "Buy any drink, we sling you a pasta." },
-      { "day": "Tuesday", "deal": "$25 steak night", "note": "200g steak, salad and fries." },
-      { "day": "Wednesday", "deal": "2 Margheritas, $40", "note": "Dine-in only. Bring a mate." },
-      { "day": "Thursday", "deal": "$15 cocktails", "note": "The whole social cocktail list." },
-      { "day": "Friday", "deal": "$15 spritz", "note": "Limoncello to tequila. Sun optional." },
-      { "day": "Mon to Fri, 3 to 5pm", "deal": "Social Hour", "note": "$10 tap beers, house wines, mimosas and prosecco." }
+      {
+        "label": "Capacity",
+        "value": "250"
+      },
+      {
+        "label": "Spaces",
+        "value": "Five"
+      },
+      {
+        "label": "Venue hire",
+        "value": "Free"
+      }
     ],
-    "extrasNote": "Plus brunch every day till 3pm, kids under 12 eat free on Sundays, and a free dessert for the birthday star."
+    "kicker": "The social hub",
+    "headline": "One level above the rush."
+  },
+  "booking": {
+    "headline": "Pull up a chair.",
+    "finePrint": "Groups of 8 or more, call 09 218 5085 and we'll sort you out.",
+    "buttonLabel": "Book your table"
   },
   "reviews": {
-    "headline": "The socializers' buzz.",
     "items": [
       {
         "name": "Irene Lizardo",
@@ -71,34 +68,109 @@
         "name": "Jonivie",
         "quote": "Thank you so much for accommodating our last minute booking for 16 people on a Sunday lunch. Service was topnotch and food was incredibly delicious. Highly recommended and will definitely be coming back."
       }
-    ]
+    ],
+    "headline": "The socializers' buzz."
+  },
+  "rituals": {
+    "items": [
+      {
+        "day": "Monday",
+        "deal": "$20 pastas",
+        "note": "Buy any drink, we sling you a pasta."
+      },
+      {
+        "day": "Tuesday",
+        "deal": "$25 steak night",
+        "note": "200g steak, salad and fries."
+      },
+      {
+        "day": "Wednesday",
+        "deal": "2 Margheritas, $40",
+        "note": "Dine-in only. Bring a mate."
+      },
+      {
+        "day": "Thursday",
+        "deal": "$15 cocktails",
+        "note": "The whole social cocktail list."
+      },
+      {
+        "day": "Friday",
+        "deal": "$15 spritz",
+        "note": "Limoncello to tequila. Sun optional."
+      },
+      {
+        "day": "Mon to Fri, 3 to 5pm",
+        "deal": "Social Hour",
+        "note": "$10 tap beers, house wines, mimosas and prosecco."
+      }
+    ],
+    "extrasNote": "Plus brunch every day till 3pm, kids under 12 eat free on Sundays, and a free dessert for the birthday star."
+  },
+  "business": {
+    "name": "Something & Social Broadway",
+    "email": "rm@sasnewmarket.co.nz",
+    "hours": {
+      "weekdays": "Mon to Fri · 11am till late",
+      "weekends": "Sat to Sun · 10am till late"
+    },
+    "phone": {
+      "tel": "+6492185085",
+      "display": "09 218 5085"
+    },
+    "social": {
+      "tiktok": "https://www.tiktok.com/@somethingandsocial",
+      "facebook": "https://www.facebook.com/somethingandsocial",
+      "instagram": "https://www.instagram.com/somethingandsocial"
+    },
+    "address": {
+      "line1": "Rooftop, Level 3, Westfield Newmarket",
+      "line2": "309 Broadway, Newmarket, Auckland"
+    },
+    "bookUrl": "https://bookings.nowbookit.com/?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&colors=hex,171343,ed6cd6&font=Montserrat",
+    "giftUrl": "https://giftcards.nowbookit.com/cards/card-selection?accountid=7495847b-a417-4dac-83f9-466a2767b993&venueid=1959&theme=light&accent=232,25,93",
+    "tagline": "Newmarket's rooftop restaurant and cocktail bar on Level 3, Westfield Newmarket."
   },
   "functions": {
-    "headline": "No hire fee. No fuss. Just the party.",
     "intro": "Birthdays, hens dos, baby showers, engagements, Christmas parties and corporate offsites. Pick a space, pick a menu, and we handle the rest.",
     "spaces": [
-      { "name": "Restaurant & Lounge", "capacity": "Standing 120 · Seated 80", "blurb": "The open kitchen at work, comfortable booths and room to move. Cosy get-togethers to full-scale celebrations." },
-      { "name": "Rooftop Terrace", "capacity": "Standing 120", "blurb": "Views down Broadway to the sea. Drinks, canapés and sunsets. The one everyone asks for." },
-      { "name": "Courtyard", "capacity": "Standing 30 · Seated 30", "blurb": "A green pocket filled with plants. Relaxed, family-friendly, made for slow afternoons." },
-      { "name": "Front Outside Courtyard", "capacity": "Seated 40", "blurb": "A lively, inviting corner at the front of the venue. Trendy without trying too hard." },
-      { "name": "Beside the Play Area", "capacity": "Standing 20 · Seated 16", "blurb": "Right next to the rooftop playground. Parents relax, kids run wild, everyone wins." },
-      { "name": "The Full Venue", "capacity": "Up to 250 guests", "blurb": "All of it. Restaurant, courtyards and terrace, exclusively yours for the big one." }
+      {
+        "name": "Restaurant & Lounge",
+        "blurb": "The open kitchen at work, comfortable booths and room to move. Cosy get-togethers to full-scale celebrations.",
+        "capacity": "Standing 120 · Seated 80"
+      },
+      {
+        "name": "Rooftop Terrace",
+        "blurb": "Views down Broadway to the sea. Drinks, canapés and sunsets. The one everyone asks for.",
+        "capacity": "Standing 120"
+      },
+      {
+        "name": "Courtyard",
+        "blurb": "A green pocket filled with plants. Relaxed, family-friendly, made for slow afternoons.",
+        "capacity": "Standing 30 · Seated 30"
+      },
+      {
+        "name": "Front Outside Courtyard",
+        "blurb": "A lively, inviting corner at the front of the venue. Trendy without trying too hard.",
+        "capacity": "Seated 40"
+      },
+      {
+        "name": "Beside the Play Area",
+        "blurb": "Right next to the rooftop playground. Parents relax, kids run wild, everyone wins.",
+        "capacity": "Standing 20 · Seated 16"
+      },
+      {
+        "name": "The Full Venue",
+        "blurb": "All of it. Restaurant, courtyards and terrace, exclusively yours for the big one.",
+        "capacity": "Up to 250 guests"
+      }
     ],
+    "headline": "No hire fee. No fuss. Just the party.",
     "enquiryNote": "Set menus with mains, desserts and pizzas, or canapés and platters for a looser vibe. Ask us for the full packages and pricing."
   },
-  "booking": {
-    "headline": "Pull up a chair.",
-    "buttonLabel": "Book your table",
-    "finePrint": "Groups of 8 or more, call 09 218 5085 and we'll sort you out."
-  },
-  "seo": {
-    "home": {
-      "title": "Something & Social Broadway | Rooftop Restaurant & Cocktail Bar, Newmarket",
-      "description": "Newmarket's rooftop restaurant and cocktail bar on Level 3, Westfield Newmarket. Wood-fired pizza, fresh pasta, social cocktails and five spaces with free venue hire."
-    },
-    "menu": { "title": "Menus | Something & Social Broadway, Newmarket" },
-    "whatson": { "title": "What's On | Something & Social Broadway, Newmarket" },
-    "functions": { "title": "Functions & Events | Something & Social Broadway, Newmarket" },
-    "contact": { "title": "Contact & Find Us | Something & Social Broadway, Newmarket" }
+  "manifesto": {
+    "body": "Birthdays. Long lunches. Wednesday for no reason. Whatever you're up to, the kitchen and the bar have your back.",
+    "line1": "You do the something.",
+    "line2": "We'll do the social.",
+    "kicker": "The deal is simple"
   }
 }
