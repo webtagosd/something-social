@@ -2,6 +2,10 @@
 // astro.config `site`, which these hand-built demos either never set or set to
 // a stale preview host.
 export const SITE_URL = "https://something-social.webtag.co.nz";
+// Demos are noindex: they carry placeholder copy and unverified reviews under a
+// real business's name. Flip to true at go-live — robots.txt and the per-page
+// meta robots tag both read this one value.
+export const INDEXABLE = false;
 
 // The real routes, read off src/pages at build time, so sitemap.xml cannot
 // drift from the pages that exist. Lazy glob: Vite gives us the keys without

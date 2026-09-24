@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import content from '../../content/content.json';
-import { SITE_URL } from '../lib/seo';
+import { SITE_URL, INDEXABLE } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -64,6 +64,7 @@ const jsonLd = {
     />
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
     <link rel="canonical" href={canonicalUrl} />
+    {!INDEXABLE && <meta name="robots" content="noindex,nofollow" />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={business.name} />
     <meta property="og:title" content={title} />
