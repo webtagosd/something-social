@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import content from '../../content/content.json';
+import { SITE_URL } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -10,6 +12,39 @@ interface Props {
 }
 
 const { title, description, dark = false } = Astro.props;
+
+// Per page, not per site: one canonical pointing at the home page tells Google
+// the whole site is one page. Trailing slash stripped so the canonical matches
+// the /menu entry pagePaths() puts in the sitemap exactly.
+const canonicalUrl = SITE_URL + (Astro.url.pathname.replace(/\/$/, '') || '/');
+// The og:image used to be "/images/terrace-umbrellas.jpg", a site-relative
+// path that link-preview crawlers cannot resolve. content.hero.image is the
+// same photo as an absolute media.webtag.co.nz URL.
+const ogImage = content.hero.image;
+
+// Only facts printed on this site. openingHours is deliberately absent: the
+// site says "11am till late" and "10am till late", which has no closing time.
+// No aggregateRating and no review either — the home page's "5 star" line
+// cites no source, so it is not a fact to restate as schema.
+const { business } = content;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: business.name,
+  description: content.seo.home.description,
+  slogan: business.tagline,
+  url: SITE_URL,
+  telephone: business.phone.tel,
+  email: business.email,
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${business.address.line1}, 309 Broadway`,
+    addressLocality: 'Newmarket, Auckland',
+    addressCountry: 'NZ',
+  },
+  sameAs: [business.social.instagram, business.social.facebook, business.social.tiktok],
+};
 ---
 
 <!doctype html>
@@ -28,9 +63,16 @@ const { title, description, dark = false } = Astro.props;
       rel="stylesheet"
     />
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={business.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/terrace-umbrellas.jpg" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class:list={[dark ? 'bg-ink' : 'bg-paper', 'overflow-x-clip']}>
     <Nav dark={dark} />
