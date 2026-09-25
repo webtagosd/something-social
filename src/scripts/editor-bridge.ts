@@ -53,11 +53,15 @@
 // directions. Add future custom domains here as they come online. Vercel
 // preview deploys of the dashboard are matched by PREVIEW_ORIGIN.
 const ALLOWED_ORIGINS = [
-  "https://webtag-live.vercel.app", // production dashboard
-  "http://localhost:3020", // local dashboard dev
-  "http://localhost:3000", // local dashboard dev (alt port)
+  "https://os.webtag.co.nz", // production dashboard
+  "https://webtag-live.vercel.app", // production dashboard (Vercel domain)
+  "https://webtag-live-webtagosd.vercel.app", // production dashboard (team alias)
+  // Local dashboard dev. import.meta.env.DEV is false in every production build, so these never ship.
+  ...(import.meta.env.DEV ? ["http://localhost:3020", "http://localhost:3000"] : []),
 ];
-const PREVIEW_ORIGIN = /^https:\/\/webtag-live(-[a-z0-9-]+)?(-webtagosd)?\.vercel\.app$/;
+// Dashboard preview deploys on the webtagosd team only: webtag-live-<hash>-webtagosd and
+// webtag-live-git-<branch>-webtagosd. Anything else named webtag-live-* is someone else's project.
+const PREVIEW_ORIGIN = /^https:\/\/webtag-live-(?:[a-z0-9]{9}|git-[a-z0-9-]+)-webtagosd\.vercel\.app$/;
 const isAllowedOrigin = (origin: string) => ALLOWED_ORIGINS.includes(origin) || PREVIEW_ORIGIN.test(origin);
 
 (function initEditorBridge() {

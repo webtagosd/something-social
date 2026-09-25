@@ -13,7 +13,7 @@
     "check-wt-tags": "node scripts/check-wt-tags.mjs"
   },
   "dependencies": {
-    "astro": "^7.1.3",
+    "astro": "^7.3.4",
     "gsap": "^3.15.0",
     "lenis": "^1.3.25"
   },
