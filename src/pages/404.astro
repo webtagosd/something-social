@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import content from '../../content/content.json';
+
+const { seo } = content;
+---
+
+<Base title={`Page Not Found | ${content.business.name}`} description={seo.home.description}>
+  <main class="flex min-h-svh flex-col items-center justify-center bg-paper px-5 pb-24 pt-32 text-center md:px-10">
+    <p class="kicker text-ink/60">404</p>
+    <h1 class="display mt-5 max-w-2xl text-5xl text-ink md:text-7xl">That page doesn't exist</h1>
+    <p class="mt-6 max-w-md leading-relaxed text-ink/70">
+      The page you're looking for isn't here. Head back home, or jump straight to what you need.
+    </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <a href="/" class="btn btn-pink">Back to home</a>
+      <a href="/menu" class="btn btn-ink">Menus</a>
+      <a href="/whats-on" class="btn btn-ink">What's On</a>
+      <a href="/contact" class="btn btn-ink">Contact</a>
+    </div>
+  </main>
+</Base>
